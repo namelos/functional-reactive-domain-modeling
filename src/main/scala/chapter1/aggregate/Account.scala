@@ -7,7 +7,7 @@ trait Address
 trait Date
 trait Amount
 
-trait AccountAggregate {
+trait Account {
   def no: String
   def name: String
   def bank: Bank
@@ -23,7 +23,7 @@ case class CheckingAccount(
                           address: Address,
                           dateOfOpening: Date,
                           dateOfClose: Option[Date]
-                          ) extends AccountAggregate
+                          ) extends Account
 
 case class SavingAccount(
                           no: String,
@@ -33,8 +33,8 @@ case class SavingAccount(
                           dateOfOpening: Date,
                           dateOfClose: Option[Date],
                           rateOfInterest: BigDecimal
-                        ) extends AccountAggregate
+                        ) extends Account
 
 trait AccountService {
-  def transfer(from: AccountAggregate, to: AccountAggregate, amount: Amount): Option[Amount]
+  def transfer(from: Account, to: Account, amount: Amount): Option[Amount]
 }
